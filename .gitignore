@@ -1,0 +1,21 @@
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Swap the comments on the following lines if you don't wish to use zero-installs
+# Documentation here: https://yarnpkg.com/features/zero-installs
+# !.yarn/cache
+#.pnp.*
+node_modules/
+.DS_Store
+.vscode/
+.idea/
+# environment variables
+.env
+# yarn berry: https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.pnp.*      # Comment out for zero install support
+.yarn/cache # Replace with !.yarn/cache for zero install support
+.eslintcache

@@ -1,0 +1,21 @@
+{
+  "name": "fun",
+  "packageManager": "yarn@3.2.0",
+  "scripts": {
+    "lint": "yarn eslint --max-warnings=0 --cache --fix \"**/*.{js,ts,jsx,tsx}\"",
+    "pretest": "tsc --noEmit",
+    "postinstall": "husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable",
+    "precommit": "npx lint-staged"
+  },
+  "devDependencies": {
+    "@20i/eslint-config": "^2.0.3",
+    "eslint": "^8.10.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^12.1.0",
+    "pinst": "^3.0.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.6.2"
+  }
+}
