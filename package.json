@@ -1,5 +1,6 @@
 {
-  "name": "fun",
+  "name": "typescript-playground",
+  "description": "A place to play with Typescript that has all of my favorite DX tools ready to go.",
   "packageManager": "yarn@3.2.0",
   "main": "src/index.ts",
   "type": "module",
