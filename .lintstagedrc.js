@@ -1,4 +1,4 @@
-const { ESLint } = require('eslint')
+import { ESLint } from 'eslint'
 
 const removeIgnoredFiles = async (files) => {
   const eslint = new ESLint()
@@ -11,7 +11,7 @@ const removeIgnoredFiles = async (files) => {
   return filteredFiles.join(' ')
 }
 
-module.exports = {
+export default {
   '**/*.ts?(x)': () => 'tsc -p tsconfig.json --noEmit',
   '**/*.{ts,tsx,js,jsx}': async (files) => {
     const filesToLint = await removeIgnoredFiles(files)

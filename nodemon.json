@@ -1,0 +1,7 @@
+{
+  "watch": ["src"],
+  "ignore": ["src/**/*.test.ts"],
+  "ext": "ts,mjs,js,json,graphql",
+  "exec": "yarn esbuild --format=cjs src/index.ts --outfile=dist/index.cjs --bundle && node ./dist/index.cjs",
+  "legacyWatch": true
+}

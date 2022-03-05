@@ -8,8 +8,6 @@
     "emitDecoratorMetadata": true,
     "noUnusedLocals": true,
     "pretty": true,
-    "lib": [
-      "esnext"
-    ]
+    "lib": ["esnext", "dom"]
   }
 }
