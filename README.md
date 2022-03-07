@@ -66,15 +66,15 @@ Letter Rank:
 
 All words with the 7 top letters (and no duplicated letters):
 
-| Rank | Word    |
-| ---: | ------- |
-|    0 | 'irate' |
-|    1 | 'later' |
-|    2 | 'trial' |
-|    3 | 'alter' |
-|    4 | 'alert' |
-|    5 | 'ratio' |
-|    6 | 'trail' |
+| All words with the 7 top letters (and no duplicated letters): |
+| ------------------------------------------------------------- |
+| 'irate'                                                       |
+| 'later'                                                       |
+| 'trial'                                                       |
+| 'alter'                                                       |
+| 'alert'                                                       |
+| 'ratio'                                                       |
+| 'trail'                                                       |
 
 Top 3 letters per position
 
@@ -86,15 +86,13 @@ Top 3 letters per position
 |        3 | [ 'e', 318 ] | [ 'n', 182 ] | [ 's', 171 ] |
 |        4 | [ 'e', 422 ] | [ 'y', 364 ] | [ 't', 253 ] |
 
-All words with the top 3 letters for each position (and no duplicated letters):
-
-| Rank | Word    |
-| ---: | ------- |
-|    0 | 'coast' |
-|    1 | 'brine' |
-|    2 | 'saint' |
-|    3 | 'briny' |
-|    4 | 'crane' |
-|    5 | 'boast' |
-|    6 | 'crony' |
-|    7 | 'crone' |
+| All words with the top 3 letters for each position (and no duplicated letters): |
+| ------------------------------------------------------------------------------- |
+| 'coast'                                                                         |
+| 'brine'                                                                         |
+| 'saint'                                                                         |
+| 'briny'                                                                         |
+| 'crane'                                                                         |
+| 'boast'                                                                         |
+| 'crony'                                                                         |
+| 'crone'                                                                         |
