@@ -2338,6 +2338,34 @@ var topWords = wordlist.filter((word) => {
 });
 console.log("All words with the 7 top letters (and no duplicated letters):");
 console.table(topWords.map((word) => ({ Word: word })));
+var countByIndex = wordlist.reduce((all, curr) => {
+  curr.split("").forEach((letter, index) => {
+    all[index] = all[index] || {};
+    all[index][letter] = (all[index][letter] || 0) + 1;
+  });
+  return all;
+}, {});
+var countByIndexArr = Object.entries(countByIndex);
+console.log("");
+countByIndexArr.forEach((arr) => {
+  console.log(Object.entries(arr[1]).sort((a, b) => a[0].localeCompare(b[0])).map((letter) => ({
+    [letter[0]]: letter[1]
+  })));
+});
+var countByIndexRank = countByIndexArr.map((position) => {
+  return Object.entries(position[1]).sort((a, b) => b[1] - a[1]).slice(0, 3);
+});
+console.log("Top 3 letters per position");
+console.table(countByIndexRank);
+var topWordsByIndex = wordlist.filter((word) => {
+  return word.split("").every((c, i) => {
+    return countByIndexRank[i].some(([topLetter]) => {
+      return topLetter === c;
+    });
+  }) && (/* @__PURE__ */ new Set([...word.split("")])).size === 5;
+});
+console.log("All words with the top 3 letters for each position (and no duplicated letters):");
+console.table(topWordsByIndex.map((word) => ({ Word: word })));
 var wordle = "wordle";
 
 // src/index.ts
