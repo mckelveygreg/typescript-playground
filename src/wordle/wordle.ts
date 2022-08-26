@@ -93,3 +93,148 @@ console.table(topWordsByIndex.map((word) => ({ Word: word })))
 // const commonWords = topWordsByIndex.filter((word) => topWords.includes(word))
 // console.table(commonWords.map((word) => ({ Word: word })))
 export const wordle = "wordle"
+
+const consonantDigraphs = [
+	// digraphs
+	"bl",
+	"br",
+	"ch",
+	"ck",
+	"cl",
+	"cr",
+	"dr",
+	"fl",
+	"fr",
+	"gh",
+	"gl",
+	"gr",
+	"ng",
+	"ph",
+	"pl",
+	"pr",
+	"qu",
+	"sc",
+	"sh",
+	"sk",
+	"sl",
+	"sm",
+	"sn",
+	"sp",
+	"st",
+	"sw",
+	"th",
+	"tr",
+	"tw",
+	"wh",
+	"wr",
+	// trigraphs
+	"nth",
+	"sch",
+	"scr",
+	"shr",
+	"spl",
+	"spr",
+	"squ",
+	"str",
+	"thr",
+	// vowel digraphs
+	"ai",
+	"au",
+	"aw",
+	"ay",
+	"ea",
+	"ee",
+	"ei",
+	"eu",
+	"ew",
+	"ey",
+	"ie",
+	"oi",
+	"oo",
+	"ou",
+	"ow",
+	"oy",
+]
+
+// count occurrences of digraphs
+const digraphCount = wordlist.reduce((all: LetterCount, curr) => {
+	consonantDigraphs.forEach((digraph) => {
+		if (curr.includes(digraph)) {
+			if (all?.[digraph]) {
+				all[digraph]++
+			} else {
+				all[digraph] = 1
+			}
+		}
+	})
+	return all
+}, {})
+const sortedDigraphCount = Object.entries(digraphCount).sort(
+	(a, b) => b[1] - a[1]
+)
+console.log(
+	"Digraph Count:",
+	sortedDigraphCount.map(([digraph, count]) => ({
+		Digraph: digraph,
+		Count: count,
+	}))
+)
+
+const wordsWithDigraphAndTopLetters = wordlist.filter((word) => {
+	return (
+		word.split("").every((c) => {
+			return (
+				countOrder
+					// use top 8 letters
+					.slice(0, 8)
+					.map(([letter]) => letter)
+					.includes(c)
+			)
+		}) &&
+		// top 5 digraphs
+		sortedDigraphCount.slice(0, 10).some(([digraph]) => {
+			return word.includes(digraph)
+		}) &&
+		new Set([...word.split("")]).size === 5
+	)
+	// consonantDigraphs.slice(0, 5).some((digraph) => word.includes(digraph)) &&
+	// new Set([...word.split("")]).size === 5
+	// )
+})
+console.log(
+	"All words with the top 8 letters for each position (and no duplicated letters), and with the top 10 digraphs:"
+)
+console.table(wordsWithDigraphAndTopLetters.map((word) => ({ Word: word })))
+
+// word score
+const getWordScore = (list: Readonly<string[]>) =>
+	list.reduce((all: LetterCount, curr) => {
+		const score = curr.split("").reduce((total, letter) => {
+			return total + countOrder.findIndex(([l]) => l === letter)
+		}, 0)
+		if (new Set([...curr.split("")]).size === 5) {
+			all[curr] = score
+		}
+		return all
+	}, {})
+
+const wordScoreDigraphs = getWordScore(wordsWithDigraphAndTopLetters)
+
+const sortedWordScoreDigraphs = Object.entries(wordScoreDigraphs).sort(
+	(a, b) => b[1] - a[1]
+)
+console.log(
+	"Word Score:",
+	sortedWordScoreDigraphs.map(([word, score]) => ({ Word: word, Score: score }))
+)
+
+const wordScore = getWordScore(wordlist)
+const sortedWordScore = Object.entries(wordScore)
+	.sort((a, b) => b[1] - a[1])
+	.reverse()
+	.slice(0, 30)
+
+console.log(
+	"Word Score:",
+	sortedWordScore.map(([word, score]) => ({ Word: word, Score: score }))
+)

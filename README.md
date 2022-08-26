@@ -96,3 +96,29 @@ Top 3 letters per position
 | 'boast'                                                                         |
 | 'crony'                                                                         |
 | 'crone'                                                                         |
+
+All words with the top 8 letters for each position (and no duplicated letters), and with the top 10 digraphs:
+
+<!-- ┌─────────┬─────────┐
+│ (index) │ Word │
+├─────────┼─────────┤
+│ 0 │ 'store' │
+│ 1 │ 'stair' │
+│ 2 │ 'stale' │
+│ 3 │ 'stare' │
+│ 4 │ 'steal' │
+│ 5 │ 'roast' │
+│ 6 │ 'stole' │
+│ 7 │ 'least' │
+└─────────┴─────────┘ -->
+
+| All words with the top 8 letters for each position (and no duplicated letters), <br> and with one of the top 10 digraphs: |
+| ------------------------------------------------------------------------------------------------------------------------- |
+| 'store'                                                                                                                   |
+| 'stair'                                                                                                                   |
+| 'stale'                                                                                                                   |
+| 'stare'                                                                                                                   |
+| 'steal'                                                                                                                   |
+| 'roast'                                                                                                                   |
+| 'stole'                                                                                                                   |
+| 'least'                                                                                                                   |

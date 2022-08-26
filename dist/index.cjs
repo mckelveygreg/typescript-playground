@@ -2367,6 +2367,105 @@ var topWordsByIndex = wordlist.filter((word) => {
 console.log("All words with the top 3 letters for each position (and no duplicated letters):");
 console.table(topWordsByIndex.map((word) => ({ Word: word })));
 var wordle = "wordle";
+var consonantDigraphs = [
+  "bl",
+  "br",
+  "ch",
+  "ck",
+  "cl",
+  "cr",
+  "dr",
+  "fl",
+  "fr",
+  "gh",
+  "gl",
+  "gr",
+  "ng",
+  "ph",
+  "pl",
+  "pr",
+  "qu",
+  "sc",
+  "sh",
+  "sk",
+  "sl",
+  "sm",
+  "sn",
+  "sp",
+  "st",
+  "sw",
+  "th",
+  "tr",
+  "tw",
+  "wh",
+  "wr",
+  "nth",
+  "sch",
+  "scr",
+  "shr",
+  "spl",
+  "spr",
+  "squ",
+  "str",
+  "thr",
+  "ai",
+  "au",
+  "aw",
+  "ay",
+  "ea",
+  "ee",
+  "ei",
+  "eu",
+  "ew",
+  "ey",
+  "ie",
+  "oi",
+  "oo",
+  "ou",
+  "ow",
+  "oy"
+];
+var digraphCount = wordlist.reduce((all, curr) => {
+  consonantDigraphs.forEach((digraph) => {
+    if (curr.includes(digraph)) {
+      if (all == null ? void 0 : all[digraph]) {
+        all[digraph]++;
+      } else {
+        all[digraph] = 1;
+      }
+    }
+  });
+  return all;
+}, {});
+var sortedDigraphCount = Object.entries(digraphCount).sort((a, b) => b[1] - a[1]);
+console.log("Digraph Count:", sortedDigraphCount.map(([digraph, count]) => ({
+  Digraph: digraph,
+  Count: count
+})));
+var wordsWithDigraphAndTopLetters = wordlist.filter((word) => {
+  return word.split("").every((c, i) => {
+    return countOrder.slice(0, 8).map(([letter]) => letter).includes(c);
+  }) && sortedDigraphCount.slice(0, 10).some(([digraph]) => {
+    return word.includes(digraph);
+  }) && (/* @__PURE__ */ new Set([...word.split("")])).size === 5;
+});
+console.log("All words with the top 8 letters for each position (and no duplicated letters), and with the top 10 digraphs:");
+console.table(wordsWithDigraphAndTopLetters.map((word) => ({ Word: word })));
+var getWordScore = (list) => list.reduce((all, curr) => {
+  const score = curr.split("").reduce((total, letter) => {
+    return total + countOrder.findIndex(([l]) => l === letter);
+  }, 0);
+  if ((/* @__PURE__ */ new Set([...curr.split("")])).size === 5) {
+    all[curr] = score;
+  }
+  return all;
+}, {});
+var wordScoreDigraphs = getWordScore(wordsWithDigraphAndTopLetters);
+var sortedWordScoreDigraphs = Object.entries(wordScoreDigraphs).sort((a, b) => b[1] - a[1]);
+console.log("Word Score:", sortedWordScoreDigraphs.map(([word, score]) => ({ Word: word, Score: score })));
+var wordScore = getWordScore(wordlist);
+var sortedWordScore = Object.entries(wordScore).sort((a, b) => b[1] - a[1]).reverse().slice(0, 30);
+console.log("Word Score:", sortedWordScore.map(([word, score]) => ({ Word: word, Score: score })));
 
 // src/index.ts
 console.log(wordle);
